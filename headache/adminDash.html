@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Library Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .tile {
+            flex: 1;
+            min-width: 200px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            border-radius: 10px;
+            margin: 20px;
+            font-weight: bold;
+            color: rgb(247, 242, 242);
+            background-color: #333;
+            box-shadow: 0 0 50px rgb(46, 43, 43), 0 0 10px #271916, 0 0 15px #f1eceb, 0 0 20px #e9e3e2;
+            text-shadow: 0 0 10px #000(87, 86, 86), 0 0 10px #8f30dd, 0 0 15px #8f30dd, 0 0 20px #8f30dd;
+        }
+        #registeredStudentsTile {
+            background-color: #8f30dd;
+            box-shadow: 0 0 25px #fff, 0 0 10px #8f30dd, 0 0 55px #8f30dd, 0 0 70px #8f30dd;
+        }
+        #bookDetailsTile {
+            background-color: #6ab1eb;
+            box-shadow: 0 0 25px #fff, 0 0 10px #6ab1eb, 0 0 55px #6ab1eb, 0 0 70px #6ab1eb;
+        }
+        #issuedBooksTile {
+            background-color: #67e94d;
+            box-shadow: 0 0 25px #fff, 0 0 10px #67e94d, 0 0 55px #67e94d, 0 0 70px #67e94d;
+        }
+        #booksAvailableTile {
+            background-color: #ffc107;
+            box-shadow: 0 0 25px #fff, 0 0 10px #ffc107, 0 0 55px #ffc107, 0 0 70px #ffc107;
+        }
+        #addBooksTile {
+            background-color: #d62020;
+            box-shadow: 0 0 25px #fff, 0 0 10px #d62020, 0 0 55px #d62020, 0 0 70px #d62020;
+        }
+        .tile:hover {
+            opacity: 25;
+            /*transform: scale(1.05);  Liquid effect - slightly scale up on hover */
+        }
+        .tile.active {
+            opacity: 0.4;
+        }
+        .content {
+            flex: 1;
+            margin-top: 10px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="tiles">
+        <div class="tile active" id="registeredStudentsTile">Registered Students</div>
+        <div class="tile" id="bookDetailsTile">Book Details</div>
+        <div class="tile" id="issuedBooksTile">Issued Books</div>
+        <div class="tile" id="booksAvailableTile">Books Available</div>
+        <div class="tile" id="addBooksTile">Add Books</div>
+    </div>
+
+    <div class="content" id="contentArea">
+        <!-- Content will be loaded here based on selected tile -->
+    </div>
+
+    <script>
+        // JavaScript to handle tile clicking and content loading
+        const tiles = document.querySelectorAll('.tile');
+        const contentArea = document.getElementById('contentArea');
+
+        tiles.forEach(tile => {
+            tile.addEventListener('click', () => {
+                // Remove active class from all tiles
+                tiles.forEach(t => t.classList.remove('active'));
+
+                // Add active class to clicked tile
+                tile.classList.add('active');
+
+                // Load content based on clicked tile
+                switch (tile.id) {
+                    case 'registeredStudentsTile':
+                        contentArea.innerHTML = '<h2>Registered Students</h2><p>List of registered students will be displayed here.</p>';
+                        break;
+                    case 'bookDetailsTile':
+                        contentArea.innerHTML = '<h2>Book Details</h2><p>Details of books will be displayed here.</p>';
+                        break;
+                    case 'issuedBooksTile':
+                        contentArea.innerHTML = '<h2>Issued Books</h2><p>List of issued books will be displayed here.</p>';
+                        break;
+                    case 'booksAvailableTile':
+                        contentArea.innerHTML = '<h2>Books Available</h2><p>List of available books will be displayed here.</p>';
+                        break;
+                    case 'addBooksTile':
+                        contentArea.innerHTML = '<h2>Add Books</h2><p>Add new books form will be displayed here.</p>';
+                        break;
+                }
+            });
+        });
+
+        // Set default active tile
+        tiles[0].click();
+    </script>
+</body>
+</html>
